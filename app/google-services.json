@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "634243942527",
+    "firebase_url": "https://foreach-8ff12.firebaseio.com",
+    "project_id": "foreach-8ff12",
+    "storage_bucket": "foreach-8ff12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634243942527:android:21a6cfc94de2db3f",
+        "android_client_info": {
+          "package_name": "com.example.monko.foreach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "634243942527-5hj96m1u387f1akmbm6g277nuhlelcrf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.monko.foreach",
+            "certificate_hash": "5a87554541298809f26567626fe4b3513cd8d18b"
+          }
+        },
+        {
+          "client_id": "634243942527-5sf4e0g4715sqadb4scljel92obck723.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV1njxjIs3jdO8SrHwULeTmLQjjG4L2WI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "634243942527-5sf4e0g4715sqadb4scljel92obck723.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
