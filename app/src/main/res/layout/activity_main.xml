@@ -6,4 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.example.monko.foreach.MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/post_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" ></android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/goBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="148dp"
+        android:onClick="Go"
+        android:text="Button"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="447dp" />
+
 </android.support.constraint.ConstraintLayout>
