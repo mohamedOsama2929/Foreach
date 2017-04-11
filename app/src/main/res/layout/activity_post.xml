@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context="com.example.monko.foreach.PostActivity">
 
+    <RelativeLayout
+        android:layout_width="470dp"
+        android:layout_height="600dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <ImageButton
+            android:id="@+id/imageSelect"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@android:color/holo_green_dark" />
+
+        <EditText
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:layout_below="@+id/imageSelect"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Post"
+            android:layout_marginTop="18dp"
+            android:layout_below="@+id/desc"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
