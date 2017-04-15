@@ -4,6 +4,7 @@ public class Post {
 
     private String desc;
     private String image;
+    private String username;
 
     public Post(){
 
@@ -12,6 +13,7 @@ public class Post {
     public Post(String desc, String image) {
         this.desc = desc;
         this.image = image;
+        this.username = username;
     }
 
     public String getDesc() {
@@ -28,5 +30,13 @@ public class Post {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
