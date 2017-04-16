@@ -2,13 +2,17 @@ package com.example.monko.foreach;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
 
     private DatabaseReference Database;
     private DatabaseReference mDatabaseUsers;
+    private DatabaseReference mDatabaseLike;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private boolean mProcessLike=false;
 
     public void Go(View view) {
 
@@ -68,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
         Database = FirebaseDatabase.getInstance().getReference().child("Post");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("users");
+        mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
         mDatabaseUsers.keepSynced(true);
+        mDatabaseLike.keepSynced(true);
         Database.keepSynced(true);
 
         PostList = (RecyclerView) findViewById(R.id.post_list);
@@ -93,11 +101,58 @@ public class MainActivity extends AppCompatActivity {
 
         ) {
             @Override
-            protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
+            protected void populateViewHolder(PostViewHolder viewHolder, Post model, final int position) {
+
+                final String post_key=getRef(position).getKey();
 
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
+                viewHolder.setLikeBtn(post_key);
+                viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this,post_key,Toast.LENGTH_LONG).show();
+                    }
+                });
+                viewHolder.mlikeBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mProcessLike=true;
+
+
+                            mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (mProcessLike) {
+
+                                        if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
+                                            mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).removeValue();
+
+                                            mProcessLike=false;
+                                        } else {
+
+                                            mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).setValue("RandomValue");
+
+                                            mProcessLike=false;
+                                        }
+
+                                    }
+                                }
+
+                                    @Override
+                                    public void onCancelled (DatabaseError databaseError){
+
+                                    }
+
+                            });
+
+
+
+
+
+                    }
+                });
 
             }
         };
@@ -128,17 +183,54 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+
         }
     }
 
     public static class PostViewHolder extends RecyclerView.ViewHolder {
 
         View view;
+        ImageButton mlikeBtn;
+        DatabaseReference mDatabaseLike;
+        FirebaseAuth mAuth;
+
 
         public PostViewHolder(View itemView) {
             super(itemView);
 
             view = itemView;
+            mlikeBtn=(ImageButton)view.findViewById(R.id.like_btn);
+            mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
+            mAuth=FirebaseAuth.getInstance();
+            mDatabaseLike.keepSynced(true);
+
+
+        }
+        public void setLikeBtn(final String post_key){
+
+            mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())){
+
+                        mlikeBtn.setImageResource(R.drawable.ic_thumb_up_black_24dp);
+
+
+                    }else {
+
+                        mlikeBtn.setImageResource(R.drawable.ic_thumb_down_black_24dp);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+
         }
 
         public void setDesc(String desc) {
