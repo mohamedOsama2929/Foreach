@@ -10,18 +10,27 @@
         android:id="@+id/goBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="148dp"
         android:layout_marginRight="148dp"
         android:onClick="Go"
-        android:text="Button"
+        android:text="Add Post"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="447dp"
-        android:layout_marginEnd="148dp" />
+        tools:layout_editor_absoluteY="447dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="logOut"
+        android:text="Log Out"
+        tools:layout_editor_absoluteX="250dp"
+        tools:layout_editor_absoluteY="447dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/post_list"
         android:layout_width="360dp"
         android:layout_height="500dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"></android.support.v7.widget.RecyclerView>
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="5dp"></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
