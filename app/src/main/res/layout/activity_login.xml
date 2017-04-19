@@ -53,15 +53,15 @@
 
 
         <TextView
-            android:id="@+id/textViewSignin"
+            android:id="@+id/textViewSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="not have an account? signup here"
-            android:textSize="20dp"
             android:layout_alignTop="@+id/loginButton"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="62dp" />
+            android:layout_marginTop="62dp"
+            android:text="not have an account? signup here"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView2"

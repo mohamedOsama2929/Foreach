@@ -50,6 +50,19 @@ public class LoginActivity extends AppCompatActivity  {
         passwordfiled=(EditText)findViewById(R.id.loginpasswordfield);
         loginbutton=(Button) findViewById(R.id.loginButton);
 
+        regis=(TextView)findViewById(R.id.textViewSignUp);
+
+        regis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent signUpIntent = new Intent(LoginActivity.this,RegisterActivity.class);
+                signUpIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(signUpIntent);
+
+            }
+        });
+
         mProgress = new ProgressDialog(this);
 
         loginbutton.setOnClickListener(new View.OnClickListener() {
