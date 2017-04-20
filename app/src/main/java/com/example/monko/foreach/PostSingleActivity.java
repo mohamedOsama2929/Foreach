@@ -27,7 +27,6 @@ public class PostSingleActivity extends AppCompatActivity {
     private ImageView mPostSingleImage;
     private TextView mPostSingleDesc;
 
-    private Button mSingleRemoveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +42,6 @@ public class PostSingleActivity extends AppCompatActivity {
         mPostSingleImage = (ImageView) findViewById(R.id.singlePostImage);
         mPostSingleDesc = (TextView) findViewById(R.id.singlePostDesc);
 
-        mSingleRemoveBtn = (Button) findViewById(R.id.singleRemoveBtn);
-
         //Toast.makeText(getApplicationContext() , post_key , Toast.LENGTH_LONG).show();
 
         Database.child(mPost_key).addValueEventListener(new ValueEventListener() {
@@ -53,16 +50,9 @@ public class PostSingleActivity extends AppCompatActivity {
 
                 String post_image = (String) dataSnapshot.child("image").getValue();
                 String post_desc = (String) dataSnapshot.child("desc").getValue();
-                String post_uid = (String) dataSnapshot.child("uid").getValue();
 
                 mPostSingleDesc.setText(post_desc);
                 Picasso.with(PostSingleActivity.this).load(post_image).into(mPostSingleImage);
-
-                if (mAuth.getCurrentUser().getUid() .equals(post_uid)) {
-
-                    mSingleRemoveBtn.setVisibility(View.VISIBLE);
-
-                }
             }
 
             @Override
@@ -72,17 +62,5 @@ public class PostSingleActivity extends AppCompatActivity {
 
 
         });
-        mSingleRemoveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Database.child(mPost_key).removeValue();
-                startActivity(new  Intent (PostSingleActivity.this,MainActivity.class));
-
-            }
-        });
-
-
-
     }
 }

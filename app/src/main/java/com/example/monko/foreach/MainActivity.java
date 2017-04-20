@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -78,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
         Database = FirebaseDatabase.getInstance().getReference().child("Post");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("users");
         mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
-        String currentUserId=mAuth.getCurrentUser().getUid();
+      //  String currentUserId=mAuth.getCurrentUser().getUid();
 
-        mDatabaseCurrentUser=FirebaseDatabase.getInstance().getReference().child("Post");
-        mQueryCurrentUser=mDatabaseCurrentUser.orderByChild("uid").equalTo(currentUserId);
+        //mDatabaseCurrentUser=FirebaseDatabase.getInstance().getReference().child("Post");
+       // mQueryCurrentUser=mDatabaseCurrentUser.orderByChild("uid").equalTo(currentUserId);
 
 
         mDatabaseUsers.keepSynced(true);
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 Post.class,
                 R.layout.post_row,
                 PostViewHolder.class,
-                mQueryCurrentUser
+                Database
 
         ) {
             @Override
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
                 viewHolder.setLikeBtn(post_key);
+                viewHolder.setRemoveBtn(post_key);
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -161,9 +163,27 @@ public class MainActivity extends AppCompatActivity {
 
                             });
 
+                    }
+                });
+
+                viewHolder.mRemove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
 
 
+                        Database.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                               Database.child(post_key).removeValue();
+                            }
+
+                            @Override
+                            public void onCancelled (DatabaseError databaseError){
+
+                            }
+
+                        });
 
                     }
                 });
@@ -205,7 +225,9 @@ public class MainActivity extends AppCompatActivity {
 
         View view;
         ImageButton mlikeBtn;
+        Button mRemove;
         DatabaseReference mDatabaseLike;
+        DatabaseReference Database;
         FirebaseAuth mAuth;
 
 
@@ -214,9 +236,41 @@ public class MainActivity extends AppCompatActivity {
 
             view = itemView;
             mlikeBtn=(ImageButton)view.findViewById(R.id.like_btn);
+            mRemove=(Button)view.findViewById(R.id.remove) ;
             mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
+            Database=FirebaseDatabase.getInstance().getReference().child("Post");
             mAuth=FirebaseAuth.getInstance();
             mDatabaseLike.keepSynced(true);
+
+
+        }
+        public void setRemoveBtn(final String post_key){
+
+            Database.child(post_key).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                    String post_uid = (String) dataSnapshot.child("uid").getValue();
+
+
+                    if (mAuth.getCurrentUser() != null) {
+                        if (mAuth.getCurrentUser().getUid().equals(post_uid)) {
+
+                            mRemove.setVisibility(View.VISIBLE);
+
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+
+
+            });
+
 
 
         }
