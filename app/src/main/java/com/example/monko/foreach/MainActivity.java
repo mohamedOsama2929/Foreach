@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference Database;
     private DatabaseReference mDatabaseUsers;
     private DatabaseReference mDatabaseLike;
+    private DatabaseReference mDatabaseCurrentUser;
+    private Query mQueryCurrentUser;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private boolean mProcessLike=false;
@@ -75,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
         Database = FirebaseDatabase.getInstance().getReference().child("Post");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("users");
         mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
+        String currentUserId=mAuth.getCurrentUser().getUid();
+
+        mDatabaseCurrentUser=FirebaseDatabase.getInstance().getReference().child("Post");
+        mQueryCurrentUser=mDatabaseCurrentUser.orderByChild("uid").equalTo(currentUserId);
+
+
         mDatabaseUsers.keepSynced(true);
         mDatabaseLike.keepSynced(true);
         Database.keepSynced(true);
@@ -97,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 Post.class,
                 R.layout.post_row,
                 PostViewHolder.class,
-                Database
+                mQueryCurrentUser
 
         ) {
             @Override

@@ -58,7 +58,7 @@ public class PostSingleActivity extends AppCompatActivity {
                 mPostSingleDesc.setText(post_desc);
                 Picasso.with(PostSingleActivity.this).load(post_image).into(mPostSingleImage);
 
-                if (mAuth.getCurrentUser().getUid() == post_uid) {
+                if (mAuth.getCurrentUser().getUid() .equals(post_uid)) {
 
                     mSingleRemoveBtn.setVisibility(View.VISIBLE);
 
@@ -67,6 +67,17 @@ public class PostSingleActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
+        mSingleRemoveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Database.child(mPost_key).removeValue();
+                startActivity(new  Intent (PostSingleActivity.this,MainActivity.class));
 
             }
         });
