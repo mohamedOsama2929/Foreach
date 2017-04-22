@@ -22,18 +22,23 @@ public class PostSingleActivity extends AppCompatActivity {
     private String mPost_key = null;
 
     private DatabaseReference Database;
+    private DatabaseReference mDatabaseLike;
+
     private FirebaseAuth mAuth;
 
     private ImageView mPostSingleImage;
     private TextView mPostSingleDesc;
+    private Button mPostRemoveBtn;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_single);
 
+
         Database = FirebaseDatabase.getInstance().getReference().child("Post");
+        mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -41,6 +46,8 @@ public class PostSingleActivity extends AppCompatActivity {
 
         mPostSingleImage = (ImageView) findViewById(R.id.singlePostImage);
         mPostSingleDesc = (TextView) findViewById(R.id.singlePostDesc);
+        mPostRemoveBtn =(Button)findViewById(R.id.singleRemoveBtn);
+
 
         //Toast.makeText(getApplicationContext() , post_key , Toast.LENGTH_LONG).show();
 
@@ -50,9 +57,18 @@ public class PostSingleActivity extends AppCompatActivity {
 
                 String post_image = (String) dataSnapshot.child("image").getValue();
                 String post_desc = (String) dataSnapshot.child("desc").getValue();
+                String post_uid = (String) dataSnapshot.child("uid").getValue();
 
                 mPostSingleDesc.setText(post_desc);
+
                 Picasso.with(PostSingleActivity.this).load(post_image).into(mPostSingleImage);
+                if (mAuth.getCurrentUser().getUid().equals(post_uid)){
+
+                    mPostRemoveBtn.setVisibility(View.VISIBLE);
+
+
+
+                }
             }
 
             @Override
@@ -62,5 +78,18 @@ public class PostSingleActivity extends AppCompatActivity {
 
 
         });
+
+        mPostRemoveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database.child(mPost_key).removeValue();
+                mDatabaseLike.child(mPost_key).removeValue();
+
+                Intent mainIntent=new Intent(PostSingleActivity.this,MainActivity.class);
+
+                startActivity(mainIntent);
+            }
+        });
+
     }
 }

@@ -26,5 +26,6 @@ public class SimplePost extends Application{
         built.setIndicatorsEnabled(false);
         built.setLoggingEnabled(true);
         Picasso.setSingletonInstance(built);
+
     }
 }

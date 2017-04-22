@@ -25,4 +25,14 @@
         android:padding="10dp"
         android:textSize="20sp" />
 
+    <Button
+        android:id="@+id/singleRemoveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="0.54"
+        android:text="Button"
+        android:visibility="invisible" />
+
 </RelativeLayout>

@@ -143,12 +143,11 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
                 viewHolder.setLikeBtn(post_key);
-                viewHolder.setRemoveBtn(post_key);
+
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //Toast.makeText(MainActivity.this,post_key,Toast.LENGTH_LONG).show();
-                        Toast.makeText(v.getContext(),"",Toast.LENGTH_LONG).show();
 
                         Intent singlePostIntent = new Intent(MainActivity.this , PostSingleActivity.class);
                         singlePostIntent.putExtra("Post_Id",post_key);
@@ -216,23 +215,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                viewHolder.mRemove.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        Database.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                               Database.child(post_key).removeValue();
-                            }
-
-                            @Override
-                            public void onCancelled (DatabaseError databaseError){
-
-                            }
-                        });
-                    }
-                });
             }
         };
 
@@ -270,7 +253,6 @@ public class MainActivity extends AppCompatActivity {
 
         View view;
         ImageButton mlikeBtn;
-        Button mRemove;
         DatabaseReference mDatabaseLike;
         DatabaseReference Database;
         FirebaseAuth mAuth;
@@ -282,7 +264,6 @@ public class MainActivity extends AppCompatActivity {
 
             view = itemView;
             mlikeBtn=(ImageButton)view.findViewById(R.id.like_btn);
-            mRemove=(Button)view.findViewById(R.id.remove) ;
             mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
             Database=FirebaseDatabase.getInstance().getReference().child("Post");
             mAuth=FirebaseAuth.getInstance();
@@ -290,42 +271,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        public void setRemoveBtn(final String post_key){
 
-            Database.child(post_key).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    String post_uid = (String) dataSnapshot.child("uid").getValue();
-                    //message to test
-                   // Toast.makeText(view.getContext(),post_uid, Toast.LENGTH_LONG).show();
-
-                    if (mAuth.getCurrentUser() != null) {
-                        if (mAuth.getCurrentUser().getUid().equals(post_uid)) {
-
-                            mRemove.setVisibility(View.VISIBLE);
-                            Log.i("uid","==useeeer");
-                           // Toast.makeText(view.getContext(),"uid==currrent user", Toast.LENGTH_LONG).show();
-                        }else {
-
-                            mRemove.setVisibility(View.INVISIBLE);
-                            Log.i("uid","!!!!!!!useeeer");
-
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-
-
-            });
-
-
-
-        }
         public void setLikeBtn(final String post_key){
 
             mDatabaseLike.addValueEventListener(new ValueEventListener() {
