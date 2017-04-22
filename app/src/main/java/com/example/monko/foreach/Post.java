@@ -5,15 +5,18 @@ public class Post {
     private String desc;
     private String image;
     private String username;
+    private String counter;
 
     public Post(){
 
     }
 
-    public Post(String desc, String image) {
+    public Post(String desc, String image,String counter) {
         this.desc = desc;
         this.image = image;
         this.username = username;
+        this.counter = counter;
+
     }
 
     public String getDesc() {
@@ -38,5 +41,13 @@ public class Post {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getCounter() {
+        return counter;
+    }
+
+    public void setCounter(String counter) {
+        this.counter = counter;
     }
 }
