@@ -234,6 +234,7 @@ public class Profile_Activity extends MainActivity {
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
+                viewHolder.setUserImage(getApplicationContext(),post_key);
                 viewHolder.setLikeBtn(post_key);
 
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
@@ -403,6 +404,39 @@ public class Profile_Activity extends MainActivity {
                 }
             });
 
+
+        }
+        public void setUserImage(final Context c,String post_key) {
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+            DatabaseReference s =ref.child("Post").child(post_key).child("userimage");
+            s.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    final String imagee = dataSnapshot.getValue(String.class);
+
+                    final ImageView post_userImage = (ImageView) view.findViewById(R.id.user_Image);
+
+                    Picasso.with(c).load(imagee).networkPolicy(NetworkPolicy.OFFLINE).into(post_userImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+
+                            Picasso.with(c).load(imagee).into(post_userImage);
+
+                        }
+                    });
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 

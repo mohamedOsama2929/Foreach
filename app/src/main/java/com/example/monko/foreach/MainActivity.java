@@ -3,6 +3,7 @@ package com.example.monko.foreach;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.constraint.solver.widgets.Snapshot;
@@ -124,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
             protected void populateViewHolder(final PostViewHolder viewHolder, Post model, final int position) {
 
                 final String post_key=getRef(position).getKey();
-                Log.i("positomn", String.valueOf(position));
-                Log.i("post key",post_key);
 
                 DatabaseReference likes=Database.child(post_key).child("likes");
                 likes.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -146,7 +145,10 @@ public class MainActivity extends AppCompatActivity {
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
+                viewHolder.setUserImage(getApplicationContext(),post_key);
                 viewHolder.setLikeBtn(post_key);
+
+
 
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -272,7 +274,6 @@ public class MainActivity extends AppCompatActivity {
             Database=FirebaseDatabase.getInstance().getReference().child("Post");
             mAuth=FirebaseAuth.getInstance();
             mDatabaseLike.keepSynced(true);
-
         }
 
 
@@ -326,6 +327,8 @@ public class MainActivity extends AppCompatActivity {
 
         public void setImage(final Context context , final String image) {
 
+
+
             final ImageView post_image = (ImageView) view.findViewById(R.id.post_image);
             //Picasso.with(context).load(image).into(post_image);
 
@@ -343,6 +346,39 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+        }
+
+        public void setUserImage(final Context c,String post_key) {
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+            DatabaseReference s =ref.child("Post").child(post_key).child("userimage");
+            s.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    final String imagee = dataSnapshot.getValue(String.class);
+
+                    final ImageView post_userImage = (ImageView) view.findViewById(R.id.user_Image);
+
+                    Picasso.with(c).load(imagee).networkPolicy(NetworkPolicy.OFFLINE).into(post_userImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+
+                            Picasso.with(c).load(imagee).into(post_userImage);
+
+                        }
+                    });
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
     }
 }

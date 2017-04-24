@@ -37,6 +37,7 @@ public class PostActivity extends AppCompatActivity {
     private Button mSubmitBtn;
     private EditText mPostdesc;
     private Uri mimageUri=null;
+
     private ProgressDialog mprogress;
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
@@ -122,17 +123,28 @@ public class PostActivity extends AppCompatActivity {
 
                                 }
                             });
+                            newPost.child("userimage" ).setValue(dataSnapshot.child("image").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if(task.isSuccessful()){
+
+                                        startActivity(new Intent(PostActivity.this,MainActivity.class));
+                                    }else {
+                                        Toast.makeText(getApplicationContext(),"errorfirebase",Toast.LENGTH_LONG);
+
+                                    }
+
+                                }
+                            });
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
 
-
                         }
                     });
                     mprogress.dismiss();
-
-
                 }
             });
 
