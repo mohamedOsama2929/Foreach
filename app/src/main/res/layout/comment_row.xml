@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+
+    <ImageView
+        android:id="@+id/comImage"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        app:srcCompat="@color/cardview_dark_background"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/comComment" />
+
+    <TextView
+        android:id="@+id/comUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/comImage"
+        android:layout_marginStart="18dp" />
+
+    <TextView
+        android:id="@+id/comComment"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toEndOf="@+id/comUsername"
+        android:padding="10dp"
+        android:text="TextView"
+        android:textSize="15sp" />
+</RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
