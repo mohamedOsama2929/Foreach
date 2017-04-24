@@ -48,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
     private int counter;
 
 
+    public void Goprof(View view) {
 
+        startActivity(new Intent(MainActivity.this , Profile_Activity.class));
+
+    }
 
     public void Go(View view) {
 

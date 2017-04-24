@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.monko.foreach.SetupActivity">
 
+    <ImageButton
+        android:id="@+id/setupimagebtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/default_image"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/setupNamefiled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/SetupSubmitbtn"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint=" Enter your new name here....."
+        android:inputType="textPersonName"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/SetupSubmitbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/setupimagebtn"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:text=" Save " />
+
+    <ImageButton
+        android:id="@+id/imagebackground"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@android:color/holo_green_light"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/setupimagebtn"
+        android:layout_alignParentStart="true" />
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="88dp"
-        android:layout_height="21dp"
-        android:text="Setup Activity"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="227dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Updating Account"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/backprofile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/setupNamefiled"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/SetupSubmitbtn"
+        android:text="Back to profile" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagebackground"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/setupimagebtn"
+        android:text="Change your image!?"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+
+</RelativeLayout>

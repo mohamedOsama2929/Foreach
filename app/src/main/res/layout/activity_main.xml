@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.monko.foreach.MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/post_list"
+        android:layout_width="360dp"
+        android:layout_height="500dp"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="5dp"></android.support.v7.widget.RecyclerView>
+
     <Button
         android:id="@+id/goBtn"
         android:layout_width="wrap_content"
@@ -15,7 +22,9 @@
         android:onClick="Go"
         android:text="Add Post"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="447dp" />
+        tools:layout_editor_absoluteY="447dp"
+        app:layout_constraintLeft_toRightOf="@+id/profileGo"
+        android:layout_marginLeft="8dp" />
 
     <Button
         android:id="@+id/button2"
@@ -23,14 +32,17 @@
         android:layout_height="wrap_content"
         android:onClick="logOut"
         android:text="Log Out"
-        tools:layout_editor_absoluteX="250dp"
-        tools:layout_editor_absoluteY="447dp" />
+        tools:layout_editor_absoluteY="447dp"
+        app:layout_constraintLeft_toRightOf="@+id/goBtn"
+        android:layout_marginLeft="8dp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/post_list"
-        android:layout_width="360dp"
-        android:layout_height="500dp"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="5dp"></android.support.v7.widget.RecyclerView>
+    <Button
+        android:id="@+id/profileGo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Goprof"
+        android:text="Profile"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="447dp" />
 
 </android.support.constraint.ConstraintLayout>
