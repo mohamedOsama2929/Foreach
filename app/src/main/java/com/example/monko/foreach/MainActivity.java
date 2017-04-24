@@ -227,7 +227,6 @@ public class MainActivity extends AppCompatActivity {
 
         PostList.setAdapter(firebaseRecyclerAdapter);
     }
-
     private void checksUserExist(){
 
 
