@@ -53,4 +53,14 @@
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/post_list"
+        android:layout_width="360dp"
+        android:layout_height="290dp"
+        android:layout_below="@+id/button4"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"></android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>
