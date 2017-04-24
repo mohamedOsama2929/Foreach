@@ -254,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public static class PostViewHolder extends RecyclerView.ViewHolder {
 
         View view;

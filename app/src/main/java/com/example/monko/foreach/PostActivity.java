@@ -83,6 +83,7 @@ public class PostActivity extends AppCompatActivity {
         });
 
     }
+
 //upload the data to firebase
     private void createPost() {
 
