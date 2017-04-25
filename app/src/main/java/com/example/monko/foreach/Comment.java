@@ -14,7 +14,7 @@ public class Comment {
 
     }
 
-    public Comment(String comment,String userImage,String userName) {
+    public Comment(String comment,String userImage) {
         this.comment = comment;
         this.userName=userName;
         this.userImage=userImage;

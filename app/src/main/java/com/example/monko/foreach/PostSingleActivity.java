@@ -161,11 +161,6 @@ public class PostSingleActivity extends AppCompatActivity {
 
                     final DatabaseReference newComment=mDatabaseCom.push();
 
-                     comment_key=newComment.getKey();
-            Toast.makeText(getApplicationContext(),comment_key,Toast.LENGTH_LONG).show();
-
-
-
                     mDataBaseUser.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -224,8 +219,9 @@ public class PostSingleActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(commentViewHolder viewHolder, Comment model, int position) {
 
+                final String comment_key=getRef(position).getKey();
 
-                viewHolder.setComment(model.getComment());
+                viewHolder.setComment(comment_key,mPost_key);
                 viewHolder.setUsername(comment_key,mPost_key);
                 viewHolder.setUserImage(getApplicationContext(),comment_key,mPost_key);
 
@@ -251,11 +247,26 @@ public class PostSingleActivity extends AppCompatActivity {
 
 
 
-        public void setComment(String comment) {
+        public void setComment(String comment_key,String mPost_key) {
 
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+
+            DatabaseReference s =ref.child("Comment").child(mPost_key).child(comment_key).child("comm");
+            s.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    final String comment = dataSnapshot.getValue(String.class);
 
                     TextView comment_desc = (TextView) view.findViewById(R.id.comComment);
-                    comment_desc.setText(comment);
+                    comment_desc.setText(comment);                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
 
 
         }

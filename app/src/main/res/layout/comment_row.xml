@@ -11,21 +11,20 @@
 
         <ImageView
             android:id="@+id/comImage"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_above="@+id/comComment"
-            android:layout_alignParentStart="true"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/default_image"
             android:layout_alignParentTop="true"
-            android:src="@mipmap/default_image" />
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/comComment" />
 
         <TextView
             android:id="@+id/comUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/comComment"
-            android:layout_marginBottom="15dp"
-            android:layout_marginStart="20dp"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/comImage"
+            android:paddingBottom="15dp"
             android:text="TextView"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -33,11 +32,11 @@
         <TextView
             android:id="@+id/comComment"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_toEndOf="@+id/comUsername"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="TextView"
             android:textSize="15sp" />
     </RelativeLayout>
