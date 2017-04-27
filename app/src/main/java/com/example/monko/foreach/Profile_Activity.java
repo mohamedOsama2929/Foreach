@@ -215,18 +215,34 @@ public class Profile_Activity extends MainActivity {
 
                 final String post_key=getRef(position).getKey();
 
-                mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild(post_key)){
+                        if (dataSnapshot.hasChild("like")){
 
-
-                            DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
-                            likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                            mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    counter =  dataSnapshot.getValue(Integer.class);
-                                    viewHolder.setCounter(String.valueOf(counter));
+                                    if (dataSnapshot.hasChild(post_key)){
+
+
+                                        DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
+                                        likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                counter =  dataSnapshot.getValue(Integer.class);
+                                                viewHolder.setCounter(String.valueOf(counter));
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        });
+
+                                    }
+
+
                                 }
 
                                 @Override
@@ -234,6 +250,7 @@ public class Profile_Activity extends MainActivity {
 
                                 }
                             });
+
                         }
 
                     }
@@ -243,7 +260,6 @@ public class Profile_Activity extends MainActivity {
 
                     }
                 });
-
 
 
                 viewHolder.setDesc(model.getDesc());
@@ -269,16 +285,34 @@ public class Profile_Activity extends MainActivity {
                         mProcessLike = true;
 
 
-                        mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                        mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.hasChild(post_key)){
+                                if (dataSnapshot.hasChild("like")){
 
-                                    DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
-                                    likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
-                                            counter =  dataSnapshot.getValue(Integer.class);
+                                            if (dataSnapshot.hasChild(post_key)){
+
+
+                                                DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
+                                                likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        counter =  dataSnapshot.getValue(Integer.class);
+                                                        viewHolder.setCounter(String.valueOf(counter));
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+                                            }
+
+
                                         }
 
                                         @Override
@@ -287,9 +321,8 @@ public class Profile_Activity extends MainActivity {
                                         }
                                     });
 
-
-
                                 }
+
                             }
 
                             @Override
@@ -297,7 +330,6 @@ public class Profile_Activity extends MainActivity {
 
                             }
                         });
-
                         mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
                             @Override

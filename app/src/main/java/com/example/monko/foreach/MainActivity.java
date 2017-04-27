@@ -129,6 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 final String post_key=getRef(position).getKey();
 
 
+mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        if (dataSnapshot.hasChild("like")){
+
 mDatabaseLike.addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -148,6 +153,18 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
                 }
             });
+
+        }
+
+
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+});
+
         }
 
     }
@@ -185,17 +202,34 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
                         mProcessLike = true;
 
-
-                        mDatabaseLike.addValueEventListener(new ValueEventListener() {
+                        mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.hasChild(post_key)){
+                                if (dataSnapshot.hasChild("like")){
 
-                                    DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
-                                    likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
-                                            counter =  dataSnapshot.getValue(Integer.class);
+                                            if (dataSnapshot.hasChild(post_key)){
+
+
+                                                DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
+                                                likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        counter =  dataSnapshot.getValue(Integer.class);
+                                                        viewHolder.setCounter(String.valueOf(counter));
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+                                            }
+
+
                                         }
 
                                         @Override
@@ -204,9 +238,8 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                         }
                                     });
 
-
-
                                 }
+
                             }
 
                             @Override
