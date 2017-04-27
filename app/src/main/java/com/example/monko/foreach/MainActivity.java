@@ -129,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
                 final String post_key=getRef(position).getKey();
 
 
-mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
+mDatabaseLike.addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        if (dataSnapshot.hasChild("Like")){
+        if (dataSnapshot.hasChild(post_key)){
 
 
             DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
@@ -186,10 +186,10 @@ mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                         mProcessLike = true;
 
 
-                        mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
+                        mDatabaseLike.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.hasChild("Like")){
+                                if (dataSnapshot.hasChild(post_key)){
 
                                     DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
                                     likes.addListenerForSingleValueEvent(new ValueEventListener() {
