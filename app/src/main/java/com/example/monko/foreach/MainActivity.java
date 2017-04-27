@@ -226,7 +226,7 @@ mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
 
                                         counter--;
                                         //viewHolder.setLikesCount(counter);
-                                        Database.child(post_key).child("likes").setValue(counter);
+                                        //Database.child(post_key).child("likes").setValue(counter);
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).removeValue();
 
@@ -241,7 +241,7 @@ mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                                         counter++;
                                         //viewHolder.setLikesCount(counter);
 
-                                        Database.child(post_key).child("likes").setValue(counter);
+                                       // Database.child(post_key).child("likes").setValue(counter);
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).setValue("random value");
 

@@ -108,7 +108,7 @@ public class PostActivity extends AppCompatActivity {
 
                             newPost.child("desc").setValue(desc_post);
                             newPost.child("image").setValue(downloadUrl.toString());
-                           // newPost.child("likes").setValue(0);
+                            //newPost.child("likes").setValue(0);
                             newPost.child("uid").setValue(mCurrentUser.getUid());
                             newPost.child("likes").setValue(0);
                             newPost.child("username" ).setValue(dataSnapshot.child("name").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
