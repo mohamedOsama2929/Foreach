@@ -317,7 +317,7 @@ public class Profile_Activity extends MainActivity {
 
                                     } else {
 
-                                        counter++;
+                                        counter+=1;
                                         //viewHolder.setLikesCount(counter);
 
                                         Database.child(post_key).child("likes").setValue(counter);
