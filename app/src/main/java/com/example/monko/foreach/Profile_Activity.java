@@ -305,13 +305,17 @@ public class Profile_Activity extends MainActivity {
 
                                 if (mProcessLike) {
 
-                                    if (dataSnapshot.child(post_key).hasChild(mauthh.getCurrentUser().getUid())) {
+                                    if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
 
                                         counter--;
                                         //viewHolder.setLikesCount(counter);
-                                        Database.child(post_key).child("likes").setValue(counter);
+                                    //    Database.child(post_key).child("likes").setValue(counter);
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).removeValue();
+
+                                        mDatabaseLike.child(post_key).child("counter").setValue(counter);
+
+
 
                                         mProcessLike = false;
 
@@ -320,9 +324,12 @@ public class Profile_Activity extends MainActivity {
                                         counter++;
                                         //viewHolder.setLikesCount(counter);
 
-                                        Database.child(post_key).child("likes").setValue(counter);
+                                       // Database.child(post_key).child("likes").setValue(counter);
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).setValue("random value");
+
+                                        mDatabaseLike.child(post_key).child("counter").setValue(counter);
+
 
                                         mProcessLike = false;
                                     }
