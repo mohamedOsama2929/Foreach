@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView PostList;
 
     private DatabaseReference Database;
+    private  DatabaseReference mDatabaseGlobal;
     private DatabaseReference mDatabaseUsers;
     private DatabaseReference mDatabaseLike;
     private DatabaseReference mDatabaseCurrentUser;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         Database = FirebaseDatabase.getInstance().getReference().child("Post");
+        mDatabaseGlobal=FirebaseDatabase.getInstance().getReference();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("users");
         mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
       //  String currentUserId=mAuth.getCurrentUser().getUid();
@@ -126,19 +128,36 @@ public class MainActivity extends AppCompatActivity {
 
                 final String post_key=getRef(position).getKey();
 
-                DatabaseReference likes=Database.child(post_key).child("likes");
-                likes.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        counter =  dataSnapshot.getValue(Integer.class);
-                        viewHolder.setCounter(String.valueOf(counter));
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        if (dataSnapshot.hasChild("Like")){
 
-                    }
-                });
+
+            DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
+            likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    counter =  dataSnapshot.getValue(Integer.class);
+                    viewHolder.setCounter(String.valueOf(counter));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+});
+
 
 
 
@@ -166,11 +185,28 @@ public class MainActivity extends AppCompatActivity {
 
                         mProcessLike = true;
 
-                        DatabaseReference likes=Database.child(post_key).child("likes");
-                        likes.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                        mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                 counter =  dataSnapshot.getValue(Integer.class);
+                                if (dataSnapshot.hasChild("Like")){
+
+                                    DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
+                                    likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            counter =  dataSnapshot.getValue(Integer.class);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
+
+                                }
                             }
 
                             @Override
@@ -194,6 +230,10 @@ public class MainActivity extends AppCompatActivity {
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).removeValue();
 
+
+                                        mDatabaseLike.child(post_key).child("counter").setValue(counter);
+
+
                                         mProcessLike = false;
 
                                     } else {
@@ -204,6 +244,9 @@ public class MainActivity extends AppCompatActivity {
                                         Database.child(post_key).child("likes").setValue(counter);
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).setValue("random value");
+
+
+                                        mDatabaseLike.child(post_key).child("counter").setValue(counter);
 
                                         mProcessLike = false;
                                     }
