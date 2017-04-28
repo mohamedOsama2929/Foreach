@@ -132,12 +132,13 @@ public class MainActivity extends AppCompatActivity {
 mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        if (dataSnapshot.hasChild("like")){
+        if (dataSnapshot.hasChild("Like")){
 
 mDatabaseLike.addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         if (dataSnapshot.hasChild(post_key)){
+            Log.i("post_key out",post_key);
 
 
             DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
@@ -146,6 +147,7 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     counter =  dataSnapshot.getValue(Integer.class);
                     viewHolder.setCounter(String.valueOf(counter));
+                    Log.i("counter out",String.valueOf(counter));
                 }
 
                 @Override
@@ -178,6 +180,8 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
 
 
+
+
                 viewHolder.setDesc(model.getDesc());
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
@@ -205,12 +209,14 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
                         mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.hasChild("like")){
+                                if (dataSnapshot.hasChild("Like")){
+
 
                                     mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.hasChild(post_key)){
+                                                Log.i("post_key in",post_key);
 
 
                                                 DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
@@ -219,6 +225,7 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         counter =  dataSnapshot.getValue(Integer.class);
                                                         viewHolder.setCounter(String.valueOf(counter));
+                                                        Log.i("counter in",String.valueOf(counter));
                                                     }
 
                                                     @Override

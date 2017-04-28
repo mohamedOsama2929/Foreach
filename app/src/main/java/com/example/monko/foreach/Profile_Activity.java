@@ -218,12 +218,15 @@ public class Profile_Activity extends MainActivity {
                 mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild("like")){
+                        if (dataSnapshot.hasChild("Like")){
 
                             mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.hasChild(post_key)){
+
+                                        Log.i("post_key  profile out",post_key);
+
 
 
                                         DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
@@ -232,6 +235,8 @@ public class Profile_Activity extends MainActivity {
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 counter =  dataSnapshot.getValue(Integer.class);
                                                 viewHolder.setCounter(String.valueOf(counter));
+                                                Log.i("counter profile out",String.valueOf(counter));
+
                                             }
 
                                             @Override
@@ -288,12 +293,13 @@ public class Profile_Activity extends MainActivity {
                         mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.hasChild("like")){
+                                if (dataSnapshot.hasChild("Like")){
 
                                     mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.hasChild(post_key)){
+                                                Log.i("post_key profile in",post_key);
 
 
                                                 DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
@@ -302,6 +308,7 @@ public class Profile_Activity extends MainActivity {
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                                         counter =  dataSnapshot.getValue(Integer.class);
                                                         viewHolder.setCounter(String.valueOf(counter));
+                                                        Log.i("counter profile in",String.valueOf(counter));
                                                     }
 
                                                     @Override
@@ -338,6 +345,7 @@ public class Profile_Activity extends MainActivity {
                                 if (mProcessLike) {
 
                                     if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
+
 
                                         counter--;
                                         //viewHolder.setLikesCount(counter);
