@@ -41,9 +41,8 @@
         android:layout_height="175dp"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="5dp"
-        android:layout_below="@id/singlePostDesc"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"></android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/singlePostDesc"
+        android:layout_centerHorizontal="true"></android.support.v7.widget.RecyclerView>
 
     <EditText
         android:id="@+id/writeComment"

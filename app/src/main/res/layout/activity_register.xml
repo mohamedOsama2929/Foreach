@@ -19,10 +19,9 @@
 
     <EditText
         android:id="@+id/emailField"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nameField"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:ems="10"
         android:hint="Enter your email....."
@@ -43,18 +42,51 @@
         android:id="@+id/registerBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Creat an account"
+        android:layout_above="@+id/signInTxt"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Sign Up" />
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:id="@+id/signInTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/registerBtn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
         android:onClick="goSignIn"
         android:text="Already registered ? Sign In Here ..."
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp" />
+
+    <EditText
+        android:id="@+id/mopilenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/emailField"
+        android:layout_toEndOf="@+id/emailField"
+        android:ems="10"
+        android:hint="Mobile number"
+        android:inputType="phone"
+        android:maxLength="11" />
+
+    <Button
+        android:id="@+id/setdatebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setdatebtn"
+        android:text="Set date"
+        android:layout_marginBottom="44dp"
+        android:layout_above="@+id/registerBtn"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/confirmpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/passwordField"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Confirm password"
+        android:inputType="textPassword" />
 </RelativeLayout>

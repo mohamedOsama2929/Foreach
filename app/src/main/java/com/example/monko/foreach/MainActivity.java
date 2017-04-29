@@ -302,8 +302,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-
-
         }
 
         public void setDesc(String desc) {
