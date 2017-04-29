@@ -4,75 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#377B91"
     tools:context="com.example.monko.foreach.SetupActivity">
 
     <ImageButton
         android:id="@+id/setupimagebtn"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/imagebackground"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/profilerounded"
         android:scaleType="centerCrop"
-        app:srcCompat="@mipmap/default_image"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:src="@mipmap/cam2" />
 
     <EditText
         android:id="@+id/setupNamefiled"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/SetupSubmitbtn"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="27dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:hint=" Enter your new name here....."
+        android:hint=" Enter Name"
         android:inputType="textPersonName"
-        android:textSize="25sp" />
+        android:paddingBottom="10dp"
+        android:paddingEnd="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/cardview_light_background"
+        android:textColorHint="@color/cardview_light_background"
+        android:textSize="25sp"
+        android:layout_above="@+id/backprofile"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/SetupSubmitbtn"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/setupimagebtn"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:text=" Save " />
+        android:layout_alignBottom="@+id/backprofile"
+        android:layout_alignStart="@+id/setupNamefiled"
+        android:background="@drawable/setuprounded"
+        android:text=" Save "
+        android:textColor="@color/cardview_light_background" />
 
     <ImageButton
         android:id="@+id/imagebackground"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@android:color/holo_green_light"
-        android:scaleType="centerCrop"
-        android:layout_above="@+id/setupimagebtn"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Updating Account"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp" />
+        android:background="#33B5E5"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/cam2" />
 
     <Button
         android:id="@+id/backprofile"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setupNamefiled"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/SetupSubmitbtn"
-        android:text="Back to profile" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imagebackground"
-        android:layout_marginTop="16dp"
-        android:layout_toEndOf="@+id/setupimagebtn"
-        android:text="Change your image!?"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20sp" />
+        android:background="@drawable/setuprounded"
+        android:text="Back to profile"
+        android:textColor="@color/cardview_light_background"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/setupNamefiled"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>

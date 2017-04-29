@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#377B91"
     tools:context="com.example.monko.foreach.Profile_Activity">
 
 
@@ -13,36 +14,38 @@
         android:layout_height="150dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@android:color/holo_green_light"
-        android:scaleType="centerCrop" />
+        android:background="#33B5E5"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/cam2" />
 
     <ImageView
         android:id="@+id/imageprofilepic"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginStart="11dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/cam2"
+        android:layout_above="@+id/post_list"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="82dp"
-        android:background="@android:color/holo_green_dark"
-        android:scaleType="centerCrop" />
+        android:background="@drawable/profilerounded"/>
 
     <Button
         android:id="@+id/gosetup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageground"
-        android:layout_alignParentEnd="true"
-        android:text="Edit "
-        android:textSize="10sp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@mipmap/edit"
+        android:textSize="10sp"
+        android:layout_alignTop="@+id/button4"
+        android:layout_toStartOf="@+id/button4" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@mipmap/homeicon"
+        android:layout_above="@+id/post_list"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/imageground"
-        android:layout_marginTop="13dp"
-        android:text="Go Main" />
+        android:layout_marginBottom="14dp" />
 
     <TextView
         android:id="@+id/textNameprof"
@@ -57,10 +60,10 @@
         android:id="@+id/post_list"
         android:layout_width="360dp"
         android:layout_height="290dp"
-        android:layout_below="@+id/button4"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="5dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"></android.support.v7.widget.RecyclerView>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

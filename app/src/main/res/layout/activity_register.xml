@@ -4,89 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/bground"
     tools:context="com.example.monko.foreach.RegisterActivity">
 
     <EditText
         android:id="@+id/nameField"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Enter your name...."
-        android:inputType="textPersonName" />
+        android:layout_alignBaseline="@+id/mopilenumber"
+        android:layout_alignBottom="@+id/mopilenumber"
+        android:layout_alignStart="@+id/emailField"
+        android:background="@drawable/rounded"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" />
 
     <EditText
         android:id="@+id/emailField"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nameField"
-        android:layout_marginTop="17dp"
-        android:ems="10"
-        android:hint="Enter your email....."
-        android:inputType="textEmailAddress" />
+        android:layout_above="@+id/passwordField"
+        android:layout_alignStart="@+id/passwordField"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/rounded"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" />
 
     <EditText
         android:id="@+id/passwordField"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/emailField"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:hint="Enter your password....."
-        android:inputType="textPassword" />
+        android:layout_above="@+id/confirmpassword"
+        android:layout_alignStart="@+id/confirmpassword"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/rounded"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" />
 
     <Button
         android:id="@+id/registerBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:text="Creat an account"
         android:layout_above="@+id/signInTxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" />
+        android:background="@android:color/holo_blue_light"
+        android:text="CREAT ACCOUNT "
+        android:textColor="@color/cardview_light_background" />
 
     <TextView
         android:id="@+id/signInTxt"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="goSignIn"
-        android:text="Already registered ? Sign In Here ..."
-        android:textSize="20sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp" />
+        android:onClick="goSignIn"
+        android:padding="15dp"
+        android:text="Already registered ? Sign In Here ..."
+        android:textAlignment="center"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/mopilenumber"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/emailField"
-        android:layout_toEndOf="@+id/emailField"
-        android:ems="10"
-        android:hint="Mobile number"
+        android:layout_above="@+id/emailField"
+        android:layout_alignEnd="@+id/emailField"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/rounded"
+        android:hint="Mo. Number"
         android:inputType="phone"
-        android:maxLength="11" />
+        android:maxLength="11"
+        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" />
 
     <Button
         android:id="@+id/setdatebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="setdatebtn"
-        android:text="Set date"
-        android:layout_marginBottom="44dp"
+        android:layout_width="330dp"
+        android:layout_height="40dp"
         android:layout_above="@+id/registerBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/registerBtn"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/rounded"
+        android:onClick="setdatebtn"
+        android:text="Set date" />
 
     <EditText
         android:id="@+id/confirmpassword"
-        android:layout_width="match_parent"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/passwordField"
-        android:layout_marginTop="13dp"
-        android:ems="10"
-        android:hint="Confirm password"
-        android:inputType="textPassword" />
+        android:layout_above="@+id/setdatebtn"
+        android:layout_alignStart="@+id/setdatebtn"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/rounded"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:paddingBottom="10dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/s"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -7,9 +7,9 @@
 
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/post_username"
@@ -27,41 +27,41 @@
             android:src="@color/cardview_dark_background" />
 
         <TextView
-        android:id="@+id/post_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Post Decription Goes Here"
-        android:padding="10dp" />
+            android:id="@+id/post_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Post Decription Goes Here"
+            android:padding="10dp" />
 
         <ImageView
-        android:id="@+id/post_image"
-        android:layout_width="345dp"
-        android:layout_height="300dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@color/cardview_shadow_start_color" />
+            android:id="@+id/post_image"
+            android:layout_width="345dp"
+            android:layout_height="300dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@color/cardview_shadow_start_color" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/like_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="0.62"
-            app:srcCompat="@drawable/ic_thumb_down_black_24dp" />
+            <ImageButton
+                android:id="@+id/like_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="0.62"
+                app:srcCompat="@drawable/ic_thumb_down_black_24dp" />
 
-        <TextView
-            android:id="@+id/likesCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.31"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/likesCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.31"
+                android:textSize="20sp" />
 
-    </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
