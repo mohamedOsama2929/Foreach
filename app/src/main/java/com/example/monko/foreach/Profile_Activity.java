@@ -233,6 +233,7 @@ public class Profile_Activity extends MainActivity {
                                         likes.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                counter=0;
                                                 counter =  dataSnapshot.getValue(Integer.class);
                                                 viewHolder.setCounter(String.valueOf(counter));
                                                 Log.i("counter profile out",String.valueOf(counter));
@@ -306,6 +307,7 @@ public class Profile_Activity extends MainActivity {
                                                 likes.addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        counter=0;
                                                         counter =  dataSnapshot.getValue(Integer.class);
                                                         viewHolder.setCounter(String.valueOf(counter));
                                                         Log.i("counter profile in",String.valueOf(counter));
@@ -386,6 +388,7 @@ public class Profile_Activity extends MainActivity {
                         });
                     }
                 });
+
 
 
             }

@@ -128,8 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
                 final String post_key=getRef(position).getKey();
 
+                Log.i("post",post_key);
+                
+                final int[] counter = new int[10];
 
-mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
+
+                mDatabaseGlobal.addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         if (dataSnapshot.hasChild("Like")){
@@ -138,16 +142,16 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         if (dataSnapshot.hasChild(post_key)){
-            Log.i("post_key out",post_key);
+
 
 
             DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
             likes.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    counter =  dataSnapshot.getValue(Integer.class);
-                    viewHolder.setCounter(String.valueOf(counter));
-                    Log.i("counter out",String.valueOf(counter));
+                    counter[position] =0;
+                    counter[position] =  dataSnapshot.getValue(Integer.class);
+                    viewHolder.setCounter(String.valueOf(counter[position]));
                 }
 
                 @Override
@@ -155,6 +159,8 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
                 }
             });
+
+        }else {
 
         }
 
@@ -166,6 +172,8 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
     }
 });
+
+        }else {
 
         }
 
@@ -216,41 +224,48 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.hasChild(post_key)){
-                                                Log.i("post_key in",post_key);
 
 
                                                 DatabaseReference likes=mDatabaseLike.child(post_key).child("counter");
                                                 likes.addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                                        counter =  dataSnapshot.getValue(Integer.class);
-                                                        viewHolder.setCounter(String.valueOf(counter));
-                                                        Log.i("counter in",String.valueOf(counter));
+                                                        counter[position] =0;
+                                                        counter[position] =  dataSnapshot.getValue(Integer.class);
+                                                        viewHolder.setCounter(String.valueOf(counter[position]));
                                                     }
 
                                                     @Override
                                                     public void onCancelled(DatabaseError databaseError) {
 
+
                                                     }
                                                 });
 
-                                            }
+                                            }else {
 
+                                                counter[position] =0;
+                                            }
 
                                         }
 
                                         @Override
                                         public void onCancelled(DatabaseError databaseError) {
 
+
                                         }
                                     });
 
+                                }else {
+
+                                    counter[position] =0;
                                 }
 
                             }
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
+
 
                             }
                         });
@@ -264,21 +279,21 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
                                     if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
 
-                                        counter--;
+                                        counter[position]--;
                                         //viewHolder.setLikesCount(counter);
                                         //Database.child(post_key).child("likes").setValue(counter);
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).removeValue();
 
 
-                                        mDatabaseLike.child(post_key).child("counter").setValue(counter);
+                                        mDatabaseLike.child(post_key).child("counter").setValue(counter[position]);
 
 
                                         mProcessLike = false;
 
                                     } else {
 
-                                        counter++;
+                                        counter[position]++;
                                         //viewHolder.setLikesCount(counter);
 
                                        // Database.child(post_key).child("likes").setValue(counter);
@@ -286,7 +301,7 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).setValue("random value");
 
 
-                                        mDatabaseLike.child(post_key).child("counter").setValue(counter);
+                                        mDatabaseLike.child(post_key).child("counter").setValue(counter[position]);
 
                                         mProcessLike = false;
                                     }
@@ -297,6 +312,7 @@ mDatabaseLike.addValueEventListener(new ValueEventListener() {
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
+
 
                             }
 
