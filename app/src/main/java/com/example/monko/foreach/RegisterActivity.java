@@ -121,6 +121,7 @@ public class RegisterActivity extends FragmentActivity {
                             DatabaseReference current_user_db = mDatabase.child(user_id);
                             current_user_db.child("name").setValue(name);
                             current_user_db.child("image").setValue("default");
+                            /*
                             if (number.length() == 11) {
                                 current_user_db.child("number").setValue(number);
                             } else if (number.length() != 11) {
@@ -134,7 +135,7 @@ public class RegisterActivity extends FragmentActivity {
                             if (!TextUtils.isEmpty(Birthdat)) {
                                 current_user_db.child("birth").setValue(Birthdat);
 
-                            }
+                            }   */
 
 
                             mProgress.dismiss();
