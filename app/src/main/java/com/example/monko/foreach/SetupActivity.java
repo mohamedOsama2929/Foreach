@@ -133,7 +133,7 @@ public class SetupActivity extends AppCompatActivity {
                 Uri imageUr = data.getData();
                 CropImage.activity(imageUr)
                         .setGuidelines(CropImageView.Guidelines.ON)
-                        .setAspectRatio(1, 1)
+                        .setAspectRatio(3, 2)
                         .start(this);
             }
             if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {

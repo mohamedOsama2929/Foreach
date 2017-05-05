@@ -33,10 +33,10 @@
         android:id="@+id/gosetup"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@mipmap/edit"
+        android:background="@mipmap/edit2"
         android:textSize="10sp"
-        android:layout_alignTop="@+id/button4"
-        android:layout_toStartOf="@+id/button4" />
+        android:layout_alignTop="@+id/imageprofilepic"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/button4"

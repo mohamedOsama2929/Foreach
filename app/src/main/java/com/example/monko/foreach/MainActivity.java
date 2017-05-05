@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.constraint.solver.widgets.Snapshot;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,23 +49,35 @@ public class MainActivity extends AppCompatActivity {
     private boolean mProcessLike=false;
     private int counter;
 
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
+
 
     public void Goprof(View view) {
 
-        startActivity(new Intent(MainActivity.this , Profile_Activity.class));
+        //startActivity(new Intent(MainActivity.this , Profile_Activity.class));
+        Intent Intent = new Intent(MainActivity.this, Profile_Activity.class);
+        Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(Intent);
 
     }
 
     public void Go(View view) {
 
-        startActivity(new Intent(MainActivity.this , PostActivity.class));
+      //  startActivity(new Intent(MainActivity.this , PostActivity.class));
+        Intent In = new Intent(MainActivity.this, PostActivity.class);
+        In.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(In);
 
     }
 
     public void logOut(View view) {
 
         mAuth.signOut();
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+       // startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
 
     }
 
@@ -73,7 +86,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                onStart();
+            }
+        });
+
+
+
+
+
+            mAuth = FirebaseAuth.getInstance();
 
        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -106,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         PostList.setLayoutManager(new LinearLayoutManager(this));
 
     }
+
 
     @Override
     protected void onStart() {
@@ -226,6 +252,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         PostList.setAdapter(firebaseRecyclerAdapter);
+        mSwipeRefreshLayout.setRefreshing(false);
     }
     private void checksUserExist(){
 

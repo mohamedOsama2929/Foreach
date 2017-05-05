@@ -7,6 +7,12 @@
     android:background="#377B91"
     tools:context="com.example.monko.foreach.MainActivity">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/activity_main_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/post_list"
         android:layout_width="360dp"
@@ -16,6 +22,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"></android.support.v7.widget.RecyclerView>
 
+    </android.support.v4.widget.SwipeRefreshLayout>
     <Button
         android:id="@+id/button2"
         android:layout_width="50dp"
@@ -30,19 +37,21 @@
         android:id="@+id/profileGo"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_alignRight="@+id/post_list"
+
         android:layout_alignStart="@+id/goBtn"
         android:layout_toEndOf="@+id/button2"
         android:background="@drawable/profile_logo"
-        android:onClick="Goprof" />
+        android:onClick="Goprof"
+        android:layout_alignParentTop="true" />
 
     <Button
         android:id="@+id/goBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_alignEnd="@+id/post_list"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:background="@drawable/plus"
         android:onClick="Go" />
+
 
 </RelativeLayout>
