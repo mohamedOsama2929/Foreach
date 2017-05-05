@@ -183,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent singlePostIntent = new Intent(MainActivity.this , PostSingleActivity.class);
                         singlePostIntent.putExtra("Post_Id",post_key);
+
+                        singlePostIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                         startActivity(singlePostIntent);
                     }
                 });
