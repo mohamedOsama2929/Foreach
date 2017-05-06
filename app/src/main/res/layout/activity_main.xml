@@ -53,5 +53,12 @@
         android:background="@drawable/plus"
         android:onClick="Go" />
 
+    <Button
+        android:id="@+id/Room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rooms"
+        android:onClick="Room"/>
+
 
 </RelativeLayout>

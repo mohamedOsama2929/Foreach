@@ -71,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void Room(View view) {
+
+        //  startActivity(new Intent(MainActivity.this , PostActivity.class));
+        Intent In = new Intent(MainActivity.this, RoomsActivity.class);
+        In.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(In);
+
+    }
+
     public void logOut(View view) {
 
         mAuth.signOut();

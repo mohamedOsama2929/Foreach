@@ -14,9 +14,7 @@
         android:roundIcon="@drawable/logo2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
@@ -27,14 +25,14 @@
         <activity android:name=".PostSingleActivity" />
         <activity android:name=".Profile_Activity" />
         <activity android:name=".SplashActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".RoomsActivity" />
+        <activity android:name=".ChatRoomActivity"></activity>
     </application>
 
 </manifest>
