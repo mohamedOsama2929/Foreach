@@ -11,8 +11,9 @@ Intent i;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
+        //ActionBar actionBar=getSupportActionBar();
+        //actionBar.hide();
 
         i=new Intent(this,MainActivity.class);
 
@@ -23,21 +24,12 @@ Intent i;
                 try {
 
                     Thread.sleep(3000);
-
                     startActivity(i);
-
-
-
-
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
-
                 finish();
-
             }
         }).start();
     }

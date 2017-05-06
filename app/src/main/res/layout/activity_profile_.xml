@@ -32,10 +32,11 @@
         android:id="@+id/gosetup"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageprofilepic"
         android:background="@mipmap/edit2"
         android:textSize="10sp"
-        android:layout_alignTop="@+id/imageprofilepic"
-        android:layout_alignParentEnd="true" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/button4"

@@ -65,6 +65,7 @@ public class PostSingleActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_single);
+
         mPost_key = getIntent().getExtras().getString("Post_Id");
         mAuth = FirebaseAuth.getInstance();
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
@@ -244,8 +245,6 @@ public class PostSingleActivity extends AppCompatActivity {
             Database=FirebaseDatabase.getInstance().getReference().child("Comment");
             mAuth=FirebaseAuth.getInstance();
         }
-
-
 
         public void setComment(String comment_key,String mPost_key) {
 

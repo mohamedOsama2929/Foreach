@@ -19,19 +19,19 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".PostActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SetupActivity" />
+        <activity android:name=".LoginActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".SetupActivity" android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".PostSingleActivity" />
-        <activity android:name=".Profile_Activity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".PostSingleActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Profile_Activity"  />
+        <activity android:name=".SplashActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RoomsActivity" />
+        <activity android:name=".RoomsActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".ChatRoomActivity"></activity>
     </application>
 

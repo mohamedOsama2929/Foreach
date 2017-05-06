@@ -37,32 +37,35 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/comment_list"
-        android:layout_width="360dp"
-        android:layout_height="175dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/singlePostDesc"
+        android:layout_centerHorizontal="true"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="5dp"
-        android:layout_below="@+id/singlePostDesc"
-        android:layout_centerHorizontal="true"></android.support.v7.widget.RecyclerView>
+        android:layout_marginBottom="50dp"></android.support.v7.widget.RecyclerView>
 
     <EditText
         android:id="@+id/writeComment"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/pushComment"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Add Your Comment ...."
         android:inputType="textPersonName"
         android:textSize="15sp"
-        android:layout_below="@+id/comment_list"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/rounded_edittext"
-        android:layout_toStartOf="@+id/pushComment" />
+        android:layout_alignTop="@+id/pushComment"
+        />
 
     <Button
         android:id="@+id/pushComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/comment_list"
-        android:text="Push" />
+        android:text="Push"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
