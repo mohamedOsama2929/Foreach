@@ -57,10 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
         //startActivity(new Intent(MainActivity.this , Profile_Activity.class));
         Intent Intent = new Intent(MainActivity.this, Profile_Activity.class);
+        Intent.putExtra("user_id",mAuth.getCurrentUser().getUid());
         Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(Intent);
 
     }
+
 
     public void Go(View view) {
 
@@ -185,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -198,6 +202,32 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(singlePostIntent);
                     }
                 });
+
+                viewHolder.mUserImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DatabaseReference likes=Database.child(post_key).child("uid");
+                        likes.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                             String use =  dataSnapshot.getValue(String.class);
+                                Intent Intent = new Intent(MainActivity.this, Profile_Activity.class);
+                                Intent.putExtra("user_id",use);
+                                Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(Intent);
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                    }
+                });
+
                 viewHolder.mlikeBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -298,6 +328,7 @@ public class MainActivity extends AppCompatActivity {
 
         View view;
         ImageButton mlikeBtn;
+        ImageView mUserImage;
         DatabaseReference mDatabaseLike;
         DatabaseReference Database;
         FirebaseAuth mAuth;
@@ -309,6 +340,9 @@ public class MainActivity extends AppCompatActivity {
 
             view = itemView;
             mlikeBtn=(ImageButton)view.findViewById(R.id.like_btn);
+
+            mUserImage=(ImageView)view.findViewById(R.id.user_Image);
+
             mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
             Database=FirebaseDatabase.getInstance().getReference().child("Post");
             mAuth=FirebaseAuth.getInstance();

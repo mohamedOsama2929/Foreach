@@ -11,8 +11,8 @@ Intent i;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        ActionBar actionBar=getSupportActionBar();
-        actionBar.hide();
+
+
 
         i=new Intent(this,MainActivity.class);
 

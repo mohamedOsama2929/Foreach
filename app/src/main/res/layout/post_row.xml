@@ -10,19 +10,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_Image"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:scaleType="centerCrop"
                 android:src="@color/cardview_dark_background"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp" />
 
             <TextView
                 android:id="@+id/post_username"
@@ -31,8 +32,8 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="15dp"
                 android:text="User Name"
-                android:textStyle="bold"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -44,22 +45,22 @@
             android:orientation="vertical"
 
             >
+
             <TextView
                 android:id="@+id/post_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Post Decription Goes Here"
-                android:paddingTop="20dp"
-                />
+                android:paddingTop="20dp" />
 
             <ImageView
                 android:id="@+id/post_image"
                 android:layout_width="345dp"
                 android:layout_height="300dp"
                 android:adjustViewBounds="true"
+                android:paddingTop="15dp"
                 android:scaleType="centerCrop"
-                android:src="@color/cardview_shadow_start_color"
-                android:paddingTop="15dp"/>
+                android:src="@color/cardview_shadow_start_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,20 +81,19 @@
                     android:layout_width="60dp"
                     android:layout_height="50dp"
                     android:layout_gravity="left"
-                    android:background="@drawable/comment"
-                    android:layout_marginLeft="20dp"  />
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/comment" />
 
                 <TextView
                     android:id="@+id/likesCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.31"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:text="0"
                     android:paddingLeft="45dp"
                     android:paddingTop="10dp"
-                    />
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

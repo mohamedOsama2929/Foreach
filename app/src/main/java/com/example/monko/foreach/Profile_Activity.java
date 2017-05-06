@@ -70,8 +70,14 @@ public class Profile_Activity extends MainActivity {
         };
 //dewa work******************************************************************************
 
+
         mauthh=FirebaseAuth.getInstance();
-        String user_id=mauthh.getCurrentUser().getUid();
+        String user_id=getIntent().getExtras().get("user_id").toString();
+        if (mAuth.getCurrentUser().getUid().equals(user_id)){
+
+            Gosetup.setVisibility(View.VISIBLE);
+
+        }
 
         profileimage=(ImageView)findViewById(R.id.imageprofilepic);
         groundimage=(ImageView)findViewById(R.id.imageground);
@@ -181,7 +187,7 @@ public class Profile_Activity extends MainActivity {
         //  String currentUserId=mAuth.getCurrentUser().getUid();
 
         mDatabaseCurrentUser=FirebaseDatabase.getInstance().getReference().child("Post");
-         mQueryCurrentUser=mDatabaseCurrentUser.orderByChild("uid").equalTo(mAuth.getCurrentUser().getUid());
+         mQueryCurrentUser=mDatabaseCurrentUser.orderByChild("uid").equalTo(user_id);
 
 
         mDatabaseUsers.keepSynced(true);
