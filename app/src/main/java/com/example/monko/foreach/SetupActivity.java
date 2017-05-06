@@ -164,6 +164,7 @@ public class SetupActivity extends AppCompatActivity {
                         mdatabaseusers.child(user_id).child("image").setValue(downloadurl);
 
                         Intent intent = new Intent(SetupActivity.this, Profile_Activity.class);
+                        intent.putExtra("user_id",mauth.getCurrentUser().getUid());
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
@@ -178,6 +179,7 @@ public class SetupActivity extends AppCompatActivity {
                         mdatabaseusers.child(user_id).child("ground").setValue(download);
 
                         Intent intent = new Intent(SetupActivity.this,Profile_Activity.class);
+                        intent.putExtra("user_id",mauth.getCurrentUser().getUid());
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
@@ -186,6 +188,7 @@ public class SetupActivity extends AppCompatActivity {
             if(!TextUtils.isEmpty(name)){
                 mdatabaseusers.child(user_id).child("name").setValue(name);
                 Intent intent = new Intent(SetupActivity.this,Profile_Activity.class);
+                intent.putExtra("user_id",mauth.getCurrentUser().getUid());
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
@@ -194,6 +197,7 @@ public class SetupActivity extends AppCompatActivity {
         if(mimageUri ==null && mimageGrounduri ==null && TextUtils.isEmpty(name)){
 
             Intent intent = new Intent(SetupActivity.this,Profile_Activity.class);
+            intent.putExtra("user_id",mauth.getCurrentUser().getUid());
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }

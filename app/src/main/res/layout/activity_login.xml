@@ -54,6 +54,8 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+
+
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:paddingBottom="10dp"

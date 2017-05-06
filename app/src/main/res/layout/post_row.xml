@@ -20,9 +20,11 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:scaleType="centerCrop"
+                android:paddingLeft="2dp"
+                android:paddingTop="4dp"
                 android:src="@color/cardview_dark_background"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#FF000000"/>
+                app:civ_border_color="#377B91"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

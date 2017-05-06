@@ -156,52 +156,55 @@ public class PostSingleActivity extends AppCompatActivity {
     }
     private void createComment() {
 
+        if (writeComment.getText().toString() != "") {
 
-        final String comment=writeComment.getText().toString().trim();
-        if (!TextUtils.isEmpty(comment)){
+        final String comment = writeComment.getText().toString().trim();
+        if (!TextUtils.isEmpty(comment)) {
 
-                    final DatabaseReference newComment=mDatabaseCom.push();
+            final DatabaseReference newComment = mDatabaseCom.push();
 
-                    mDataBaseUser.addValueEventListener(new ValueEventListener() {
+            mDataBaseUser.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    newComment.child("comm").setValue(comment);
+                    newComment.child("uid").setValue(mCurrentUser.getUid());
+                    newComment.child("username").setValue(dataSnapshot.child("name").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                            newComment.child("comm").setValue(comment);
-                            newComment.child("uid").setValue(mCurrentUser.getUid());
-                            newComment.child("username" ).setValue(dataSnapshot.child("name").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
 
-                                    if(task.isSuccessful()){
+                            } else {
+                                Toast.makeText(getApplicationContext(), "errorfirebase", Toast.LENGTH_LONG);
 
-                                    }else {
-                                        Toast.makeText(getApplicationContext(),"errorfirebase",Toast.LENGTH_LONG);
-
-                                    }
-
-                                }
-                            });
-                            newComment.child("userimage" ).setValue(dataSnapshot.child("image").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-
-                                    if(task.isSuccessful()){
-
-                                    }else {
-                                        Toast.makeText(getApplicationContext(),"errorfirebase",Toast.LENGTH_LONG);
-
-                                    }
-
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                            }
 
                         }
                     });
+                    newComment.child("userimage").setValue(dataSnapshot.child("image").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            if (task.isSuccessful()) {
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "errorfirebase", Toast.LENGTH_LONG);
+
+                            }
+
+                        }
+                    });
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
+        writeComment.setText("");
+    }
     }
 
     @Override

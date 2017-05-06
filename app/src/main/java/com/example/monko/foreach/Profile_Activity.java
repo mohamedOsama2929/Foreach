@@ -239,6 +239,7 @@ public class Profile_Activity extends MainActivity {
 
 
                 viewHolder.setDesc(model.getDesc());
+                viewHolder.setDate(model.getDate());
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
                 viewHolder.setUserImage(getApplicationContext(),post_key);
@@ -377,6 +378,11 @@ public class Profile_Activity extends MainActivity {
 
             TextView post_desc = (TextView) view.findViewById(R.id.post_desc);
             post_desc.setText(desc);
+        }
+        public void setDate(String date){
+
+            TextView post_date=(TextView)view.findViewById(R.id.textDate);
+            post_date.setText(date);
         }
 
         public void setCounter(String counter) {

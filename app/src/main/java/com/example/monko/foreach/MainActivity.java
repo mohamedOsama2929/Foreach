@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 Post.class,
                 R.layout.post_row,
                 PostViewHolder.class,
-                Database.orderByChild("likes")
+                Database
 
         ) {
             @Override
