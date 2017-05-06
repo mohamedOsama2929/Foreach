@@ -34,6 +34,8 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView PostList;
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 viewHolder.setDesc(model.getDesc());
+                viewHolder.setDate(model.getDate());
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
                 viewHolder.setUserImage(getApplicationContext(),post_key);
@@ -381,6 +385,11 @@ public class MainActivity extends AppCompatActivity {
 
             TextView post_desc = (TextView) view.findViewById(R.id.post_desc);
             post_desc.setText(desc);
+        }
+        public void setDate(String date){
+
+            TextView post_date=(TextView)view.findViewById(R.id.textDate);
+            post_date.setText(date);
         }
 
         public void setCounter(String counter) {

@@ -17,13 +17,16 @@
         android:id="@+id/roomName"
         android:layout_width="280dp"
         android:layout_height="40dp"
-        android:background="@drawable/rounded"
-        android:hint="Room name"
-        android:inputType="textPersonName"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/roomName"
-        android:layout_toStartOf="@+id/push" />
+        android:layout_toStartOf="@+id/push"
+        android:background="@drawable/rounded"
+        android:hint="Room name"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/push"
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:text="push"
-        android:layout_alignTop="@+id/roomName" />
+        android:layout_alignTop="@+id/roomName"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
 </RelativeLayout>

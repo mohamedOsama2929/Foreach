@@ -16,7 +16,9 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/profilerounded"
         android:scaleType="centerCrop"
-        android:src="@mipmap/cam2" />
+        android:src="@mipmap/cam2"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/setupNamefiled"
@@ -25,7 +27,7 @@
         android:layout_marginBottom="27dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
-        android:hint=" Enter Name"
+        android:hint="@string/enter_name"
         android:inputType="textPersonName"
         android:paddingBottom="10dp"
         android:paddingEnd="10dp"
@@ -36,7 +38,8 @@
         android:textColorHint="@color/cardview_light_background"
         android:textSize="25sp"
         android:layout_above="@+id/backprofile"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        tools:ignore="RtlHardcoded" />
 
     <Button
         android:id="@+id/SetupSubmitbtn"
@@ -46,7 +49,8 @@
         android:layout_alignStart="@+id/setupNamefiled"
         android:background="@drawable/setuprounded"
         android:text=" Save "
-        android:textColor="@color/cardview_light_background" />
+        android:textColor="@color/cardview_light_background"
+        tools:ignore="HardcodedText" />
 
     <ImageButton
         android:id="@+id/imagebackground"
@@ -56,7 +60,8 @@
         android:layout_alignParentTop="true"
         android:background="#33B5E5"
         android:scaleType="centerCrop"
-        android:src="@mipmap/cam2" />
+        android:src="@mipmap/cam2"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/backprofile"
@@ -67,6 +72,7 @@
         android:textColor="@color/cardview_light_background"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/setupNamefiled"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>

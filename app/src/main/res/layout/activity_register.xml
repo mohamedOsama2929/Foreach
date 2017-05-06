@@ -20,7 +20,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="25dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <EditText
         android:id="@+id/emailField"
@@ -35,7 +36,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="25dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <EditText
         android:id="@+id/passwordField"
@@ -50,7 +52,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="25dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <Button
         android:id="@+id/registerBtn"
@@ -60,7 +63,8 @@
         android:layout_centerHorizontal="true"
         android:background="@android:color/holo_blue_light"
         android:text="CREAT ACCOUNT "
-        android:textColor="@color/cardview_light_background" />
+        android:textColor="@color/cardview_light_background"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/signInTxt"
@@ -73,7 +77,8 @@
         android:text="Already registered ? Sign In Here ..."
         android:textAlignment="center"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/mopilenumber"
@@ -89,7 +94,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="25dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <Button
         android:id="@+id/setdatebtn"
@@ -100,7 +106,7 @@
         android:layout_marginBottom="18dp"
         android:background="@drawable/rounded"
         android:onClick="setdatebtn"
-        android:text="Set date" />
+        android:text="@string/set_date" />
 
     <EditText
         android:id="@+id/confirmpassword"
@@ -115,7 +121,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="25dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp" />
+        android:paddingTop="10dp"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -123,5 +130,6 @@
         android:layout_height="150dp"
         android:src="@mipmap/s"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:ignore="ContentDescription" />
 </RelativeLayout>

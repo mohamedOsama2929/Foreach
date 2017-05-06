@@ -7,6 +7,7 @@ public class Post {
     private String username;
     private String userImage;
     private String counter;
+    private String Date;
 
     public Post(){
 
@@ -59,5 +60,13 @@ public class Post {
 
     public void setUserImage(String userImage) {
         this.userImage = userImage;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 }

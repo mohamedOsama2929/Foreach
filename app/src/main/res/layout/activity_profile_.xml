@@ -16,7 +16,9 @@
         android:layout_alignParentTop="true"
         android:background="#33B5E5"
         android:scaleType="centerCrop"
-        android:src="@mipmap/cam2" />
+        android:src="@mipmap/cam2"
+        android:contentDescription=""
+        tools:ignore="ContentDescription" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageprofilepic"
@@ -36,7 +38,8 @@
         android:layout_alignTop="@+id/imageprofilepic"
         android:background="@mipmap/edit2"
         android:textSize="10sp"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        tools:ignore="SmallSp" />
 
     <Button
         android:id="@+id/button4"

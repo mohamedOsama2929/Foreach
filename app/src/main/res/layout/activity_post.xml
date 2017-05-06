@@ -14,7 +14,8 @@
             android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
             android:background="@mipmap/cam2"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
 
         <EditText
             android:id="@+id/desc"
@@ -26,7 +27,8 @@
             android:background="@drawable/rounded_edittext"
             android:inputType="textMultiLine"
             android:padding="10dp"
-            android:textColor="@color/cardview_light_background" />
+            android:textColor="@color/cardview_light_background"
+            tools:ignore="LabelFor" />
 
         <Button
             android:id="@+id/submitBtn"
@@ -36,5 +38,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="23dp"
             android:background="@drawable/setuprounded"
-            android:text="Submit Post" />
+            android:text="Submit Post"
+            tools:ignore="HardcodedText" />
 </RelativeLayout>

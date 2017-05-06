@@ -24,15 +24,30 @@
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FF000000"/>
 
-            <TextView
-                android:id="@+id/post_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingTop="15dp"
-                android:text="User Name"
-                android:textStyle="bold"
-                android:textSize="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/post_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="15dp"
+                    android:text="User Name"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/textDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -48,7 +63,7 @@
                 android:id="@+id/post_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Post Decription Goes Here"
+                android:hint="@string/post_decription_goes_here"
                 android:paddingTop="20dp"
                 />
 
@@ -59,7 +74,8 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@color/cardview_shadow_start_color"
-                android:paddingTop="15dp"/>
+                android:paddingTop="15dp"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,7 +89,9 @@
                     android:layout_height="50dp"
                     android:layout_gravity="left"
                     android:layout_marginLeft="20dp"
-                    android:background="@color/cardview_light_background" />
+                    android:background="@color/cardview_light_background"
+                    tools:ignore="ContentDescription,RtlHardcoded"
+                    android:contentDescription="" />
 
                 <ImageButton
                     android:id="@+id/Comment_btn"
@@ -81,11 +99,12 @@
                     android:layout_height="50dp"
                     android:layout_gravity="left"
                     android:background="@drawable/comment"
-                    android:layout_marginLeft="20dp"  />
+                    android:layout_marginLeft="20dp"
+                    tools:ignore="ContentDescription,RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/likesCount"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.31"
                     android:textSize="30sp"
@@ -93,7 +112,7 @@
                     android:text="0"
                     android:paddingLeft="45dp"
                     android:paddingTop="10dp"
-                    />
+                    tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
 
             </LinearLayout>
 
