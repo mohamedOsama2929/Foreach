@@ -28,6 +28,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class PostActivity extends AppCompatActivity {
 
     private ImageButton mSelectImage;
@@ -84,11 +88,14 @@ public class PostActivity extends AppCompatActivity {
 
     }
 
-//upload the data to firebase
+    //upload the data to firebase
     private void createPost() {
 
 
         final String desc_post=mPostdesc.getText().toString().trim();
+        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy, HH:mm");
+        final String datepost = df.format(Calendar.getInstance().getTime());
+
         if (!TextUtils.isEmpty(desc_post)&&mimageUri!=null){
 
             mprogress.setMessage("loading...");
@@ -99,8 +106,8 @@ public class PostActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                  final  Uri downloadUrl=taskSnapshot.getDownloadUrl();
-                   final DatabaseReference newPost=mDataBase.push();
+                    final  Uri downloadUrl=taskSnapshot.getDownloadUrl();
+                    final DatabaseReference newPost=mDataBase.push();
 
                     mDataBaseUser.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -109,8 +116,8 @@ public class PostActivity extends AppCompatActivity {
                             newPost.child("desc").setValue(desc_post);
                             newPost.child("image").setValue(downloadUrl.toString());
                             newPost.child("likes").setValue(0);
+                            newPost.child("date").setValue(datepost);
                             newPost.child("uid").setValue(mCurrentUser.getUid());
-                            newPost.child("likes").setValue(0);
                             newPost.child("username" ).setValue(dataSnapshot.child("name").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -154,13 +161,13 @@ public class PostActivity extends AppCompatActivity {
 
 
     }
-//-------------
+    //-------------
     //gallery intent result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==GALLERY_REQUEST&&resultCode==RESULT_OK){
-             mimageUri=data.getData();
+            mimageUri=data.getData();
             mSelectImage.setImageURI(mimageUri);
 
 

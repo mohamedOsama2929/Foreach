@@ -84,16 +84,16 @@ public class RoomsActivity extends AppCompatActivity {
 
             }
         });
-         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                 Intent chat=new Intent(getApplicationContext(),ChatRoomActivity.class);
-                 chat.putExtra("roomName",((TextView)view).getText().toString());
-                 chat.putExtra("user_id",user_id);
-                 startActivity(chat);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent chat=new Intent(getApplicationContext(),ChatRoomActivity.class);
+                chat.putExtra("roomName",((TextView)view).getText().toString());
+                chat.putExtra("user_id",user_id);
+                startActivity(chat);
 
-             }
-         });
+            }
+        });
 
 
 

@@ -29,7 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/comImage"
             android:paddingBottom="15dp"
-            android:text="TextView"
+            android:text="@string/textview"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -42,7 +42,8 @@
             android:layout_toEndOf="@+id/comUsername"
             android:padding="5dp"
             android:text="TextView"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            app:ignore="HardcodedText" />
     </RelativeLayout>
 
 

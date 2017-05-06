@@ -52,18 +52,20 @@ public class ChatRoomActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final String userName = dataSnapshot.getValue(String.class);
 
-
                 send.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Map<String,Object>map=new HashMap<String, Object>();
-                        tempKey=Room.push().getKey();
-                        Room.updateChildren(map);
-                        DatabaseReference message=Room.child(tempKey);
-                        Map<String,Object>map2=new HashMap<String, Object>();
-                        map2.put("name",userName);
-                        map2.put("msg",inputMsg.getText().toString());
-                        message.updateChildren(map2);
+                        if (inputMsg.getText().toString()!="") {
+                            Map<String, Object> map = new HashMap<String, Object>();
+                            tempKey = Room.push().getKey();
+                            Room.updateChildren(map);
+                            DatabaseReference message = Room.child(tempKey);
+                            Map<String, Object> map2 = new HashMap<String, Object>();
+                            map2.put("name", userName);
+                            map2.put("msg", inputMsg.getText().toString());
+                            message.updateChildren(map2);
+                            inputMsg.setText("");
+                        }
 
 
                     }
@@ -114,14 +116,15 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
     }
-private String chatMsg,chatUserName;
+    private String chatMsg,chatUserName;
     private void append_chat_conversation(DataSnapshot dataSnapshot) {
 
         Iterator i=dataSnapshot.getChildren().iterator();
         while (i.hasNext()){
             chatMsg= (String) ((DataSnapshot)i.next()).getValue();
+
             chatUserName= (String) ((DataSnapshot)i.next()).getValue();
-            chatConversation.append(chatUserName+" : "+chatMsg);
+            chatConversation.append( chatUserName+" :   "+chatMsg+"\n");
 
 
         }

@@ -13,6 +13,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseLike;
     private DatabaseReference mDatabaseCurrentUser;
     private DatabaseReference mDatabaseCounterLike;
-    private Query mQueryCurrentUser;
+    private Query mQueryPosts;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private boolean mProcessLike=false;
@@ -51,44 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-
-
-    public void Goprof(View view) {
-
-        //startActivity(new Intent(MainActivity.this , Profile_Activity.class));
-        Intent Intent = new Intent(MainActivity.this, Profile_Activity.class);
-        Intent.putExtra("user_id",mAuth.getCurrentUser().getUid());
-        Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(Intent);
-
-    }
-
-
     public void Go(View view) {
 
-        //  startActivity(new Intent(MainActivity.this , PostActivity.class));
         Intent In = new Intent(MainActivity.this, PostActivity.class);
         In.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(In);
-
-    }
-
-    public void Room(View view) {
-
-        //  startActivity(new Intent(MainActivity.this , PostActivity.class));
-        Intent In = new Intent(MainActivity.this, RoomsActivity.class);
-        In.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(In);
-
-    }
-
-    public void logOut(View view) {
-
-        mAuth.signOut();
-        // startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        Intent i = new Intent(MainActivity.this, LoginActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
 
     }
 
@@ -104,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 onStart();
             }
         });
-
-
-
-
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -127,11 +93,6 @@ public class MainActivity extends AppCompatActivity {
         Database = FirebaseDatabase.getInstance().getReference().child("Post");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("users");
         mDatabaseLike=FirebaseDatabase.getInstance().getReference().child("Like");
-        //  String currentUserId=mAuth.getCurrentUser().getUid();
-
-        //mDatabaseCurrentUser=FirebaseDatabase.getInstance().getReference().child("Post");
-        // mQueryCurrentUser=mDatabaseCurrentUser.orderByChild("uid").equalTo(currentUserId);
-
 
         mDatabaseUsers.keepSynced(true);
         mDatabaseLike.keepSynced(true);
@@ -143,6 +104,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.profileBtn){
+
+            Intent Intent = new Intent(MainActivity.this, Profile_Activity.class);
+            Intent.putExtra("user_id",mAuth.getCurrentUser().getUid());
+            Intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(Intent);
+
+        }
+        else if (item.getItemId() == R.id.logoutBtn){
+
+            mAuth.signOut();
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+
+        }
+        else {
+
+            Intent In = new Intent(MainActivity.this, RoomsActivity.class);
+            In.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(In);
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onStart() {
@@ -155,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                 Post.class,
                 R.layout.post_row,
                 PostViewHolder.class,
-                Database
+                Database.orderByChild("likes")
 
         ) {
             @Override
@@ -180,19 +177,15 @@ public class MainActivity extends AppCompatActivity {
 
 
                 viewHolder.setDesc(model.getDesc());
+                viewHolder.setDate(model.getDate());
                 viewHolder.setImage(getApplicationContext() , model.getImage());
                 viewHolder.setUsername(model.getUsername());
                 viewHolder.setUserImage(getApplicationContext(),post_key);
                 viewHolder.setLikeBtn(post_key);
 
-
-
-
-
                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Toast.makeText(MainActivity.this,post_key,Toast.LENGTH_LONG).show();
 
                         Intent singlePostIntent = new Intent(MainActivity.this , PostSingleActivity.class);
                         singlePostIntent.putExtra("Post_Id",post_key);
@@ -223,8 +216,6 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
-
-
                     }
                 });
 
@@ -288,8 +279,6 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
                 });
-
-
             }
         };
 
@@ -319,7 +308,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-
         }
     }
 
@@ -332,7 +320,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference mDatabaseLike;
         DatabaseReference Database;
         FirebaseAuth mAuth;
-
 
 
         public PostViewHolder(View itemView) {
@@ -381,6 +368,11 @@ public class MainActivity extends AppCompatActivity {
 
             TextView post_desc = (TextView) view.findViewById(R.id.post_desc);
             post_desc.setText(desc);
+        }
+        public void setDate(String date){
+
+            TextView post_date=(TextView)view.findViewById(R.id.textDate);
+            post_date.setText(date);
         }
 
         public void setCounter(String counter) {

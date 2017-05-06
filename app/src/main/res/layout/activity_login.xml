@@ -16,7 +16,8 @@
         android:layout_alignParentTop="true"
         android:layout_weight="1"
         android:scaleType="centerCrop"
-        android:src="@mipmap/friends" />
+        android:src="@mipmap/friends"
+        tools:ignore="ContentDescription,ObsoleteLayoutParam" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -24,7 +25,8 @@
         android:layout_height="170dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:src="@mipmap/logo" />
+        android:src="@mipmap/logo"
+        tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/loginpasswordfield"
@@ -40,7 +42,8 @@
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:textColor="@color/cardview_light_background"
-        android:textColorHint="@color/cardview_light_background" />
+        android:textColorHint="@color/cardview_light_background"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <EditText
         android:id="@+id/loginemailfield"
@@ -49,7 +52,6 @@
         android:layout_above="@+id/loginpasswordfield"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
-        android:layout_weight="1"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Email"
@@ -59,7 +61,8 @@
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:textColor="@color/cardview_light_background"
-        android:textColorHint="@color/cardview_light_background" />
+        android:textColorHint="@color/cardview_light_background"
+        tools:ignore="HardcodedText,RtlHardcoded" />
 
     <Button
         android:id="@+id/loginButton"
@@ -73,7 +76,8 @@
         android:text="Log in"
         android:textColor="@color/cardview_light_background"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam" />
 
 
     <com.google.android.gms.common.SignInButton
@@ -99,6 +103,7 @@
         android:textColor="@color/cardview_light_background"
         android:textSize="15sp"
         tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="431dp" />
+        tools:layout_editor_absoluteY="431dp"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>
